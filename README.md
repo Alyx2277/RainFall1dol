@@ -1,2 +1,2 @@
 # RainFall1dol
-使用C++的IMGUI框架构建的指令编辑工具
+使用QT界面重构的应用工具
