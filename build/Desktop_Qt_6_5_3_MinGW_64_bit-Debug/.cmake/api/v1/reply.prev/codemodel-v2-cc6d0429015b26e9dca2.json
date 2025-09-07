@@ -1,0 +1,169 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-ed58b13c52e7f5b2ee8d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "RainfallEditTest",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-e9b1cf1e1327f90c9377.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-acdc632878cee59f4459.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-ee40d5931fc82ab61c5e.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-ec40e17b5d4638bc4945.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appRainfallEditTest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appRainfallEditTest-Debug-1779daec61b841ee5465.json",
+					"name" : "appRainfallEditTest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appRainfallEditTest_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appRainfallEditTest_autogen-Debug-817b0b0f292a6778d25f.json",
+					"name" : "appRainfallEditTest_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appRainfallEditTest_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appRainfallEditTest_autogen_timestamp_deps-Debug-39cb63bafb5c71d7ac98.json",
+					"name" : "appRainfallEditTest_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appRainfallEditTest_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appRainfallEditTest_qmlimportscan-Debug-2069d8e4d3f6c32d786a.json",
+					"name" : "appRainfallEditTest_qmlimportscan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appRainfallEditTest_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appRainfallEditTest_qmllint-Debug-e7741215ef47fff6164f.json",
+					"name" : "appRainfallEditTest_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appRainfallEditTest_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appRainfallEditTest_qmllint_json-Debug-5d7557877f063b697934.json",
+					"name" : "appRainfallEditTest_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appRainfallEditTest_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appRainfallEditTest_qmllint_module-Debug-be6b8deb5908d61a132d.json",
+					"name" : "appRainfallEditTest_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appRainfallEditTest_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appRainfallEditTest_qmltyperegistration-Debug-0442d0ec88934a429624.json",
+					"name" : "appRainfallEditTest_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appRainfallEditTest_tooling::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appRainfallEditTest_tooling-Debug-06c95e390bed90523ced.json",
+					"name" : "appRainfallEditTest_tooling",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Projects/QMLEditTest/RainfallEditTest/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug",
+		"source" : "D:/Projects/QMLEditTest/RainfallEditTest"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
