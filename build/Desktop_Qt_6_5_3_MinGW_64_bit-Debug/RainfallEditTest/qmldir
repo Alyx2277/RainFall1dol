@@ -1,7 +1,0 @@
-module RainfallEditTest
-typeinfo appRainfallEditTest.qmltypes
-prefer :/RainfallEditTest/
-Main 1.0 Main.qml
-MenuBar 1.0 Components/MenuBar.qml
-PicWindow 1.0 Components/PicWindow.qml
-

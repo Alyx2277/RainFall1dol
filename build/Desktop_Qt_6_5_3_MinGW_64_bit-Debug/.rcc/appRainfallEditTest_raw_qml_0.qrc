@@ -1,8 +1,0 @@
-<RCC>
-  <qresource prefix="/RainfallEditTest/">
-    <file alias="Main.qml">D:/Projects/QMLEditTest/RainfallEditTest/Main.qml</file>
-    <file alias="Components/MenuBar.qml">D:/Projects/QMLEditTest/RainfallEditTest/Components/MenuBar.qml</file>
-    <file alias="Components/PicWindow.qml">D:/Projects/QMLEditTest/RainfallEditTest/Components/PicWindow.qml</file>
-  </qresource>
-</RCC>
-

@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/RainfallEditTest">
-    <file alias="qmldir">D:/Projects/QMLEditTest/RainfallEditTest/build/Desktop_Qt_6_5_3_MinGW_64_bit-Debug/RainfallEditTest/qmldir</file>
-  </qresource>
-</RCC>
-

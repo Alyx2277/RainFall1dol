@@ -17,8 +17,9 @@ qt_add_qml_module(appRainfallEditTest
     VERSION 1.0
     QML_FILES
         Main.qml
-        QML_FILES Components/MenuBar.qml
+        QML_FILES Components/MenuBaraaaaa.qml
         QML_FILES Components/PicWindow.qml
+        RESOURCES images/imagesUrl.qrc
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

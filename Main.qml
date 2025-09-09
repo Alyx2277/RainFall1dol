@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
+import "./Components"
 
 ApplicationWindow {
     width: 640
@@ -31,4 +32,9 @@ ApplicationWindow {
     }
 
 
+    PicWindow {
+        width: 200
+        height: 200
+        imageSource: "qrc:/image0.png"
+    }
 }
