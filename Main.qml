@@ -31,10 +31,9 @@ ApplicationWindow {
         }
     }
 
-
     PicWindow {
-        width: 200
-        height: 200
-        imageSource: "qrc:/image0.png"
+        width: 400
+        height: 400
+        imageSource: "qrc:/action/images/image0.png"
     }
 }

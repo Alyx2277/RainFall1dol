@@ -4,12 +4,13 @@ project(RainfallEditTest VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTORCC ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick)
 
 
 qt_add_executable(appRainfallEditTest
-    main.cpp
+    main.cpp imagesUrl.qrc
 )
 
 qt_add_qml_module(appRainfallEditTest
@@ -19,7 +20,8 @@ qt_add_qml_module(appRainfallEditTest
         Main.qml
         QML_FILES Components/MenuBaraaaaa.qml
         QML_FILES Components/PicWindow.qml
-        RESOURCES images/imagesUrl.qrc
+        RESOURCES
+        RESOURCES imagesUrl.qrc
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
