@@ -10,6 +10,8 @@ Item{
     property color placeholderColor: "#f0f0f0" //占位背景色
     property color textColor: "#999999"
 
+    signal imageClicked()
+
     Image {
         id: actualImage
         anchors.fill: parent
@@ -60,6 +62,13 @@ Item{
         border.width: 1
         border.color: "#e0e0e0"
         radius: root.borderRadius
+    }
+
+    // 点击区域
+    MouseArea {
+        anchors.fill: parent
+        onClicked: root.imageClicked()
+        cursorShape: Qt.PointingHandCursor
     }
 }
 
