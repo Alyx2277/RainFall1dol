@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQml.Models
-import "utils" as Utils
+import "../utils" as Utils
 
 Item {
     id: root
@@ -22,14 +22,16 @@ Item {
     // 计算属性
     property real contentY: gridView.contentY
     property real contentHeight: gridView.contentHeight
-    property int visibleItemCount: gridView.visibleItemCount
+    // property int visibleItemCount: gridView.visibleItemCount
+
 
     // 内部函数 检查项目是否在可见区域附近
+    // 控制了加载多少图片
     function isItemNearView(index) {
         if(!enableLazyLoad) return true;
 
         var itemPos = index * cellHeight;
-        var buff = preloadMargin * cellHeight;
+        var buffer = preloadMargin * cellHeight;
         return itemPos>=(gridView.contentY - buffer) &&
                 itemPos <= (gridView.contentY + gridView.height + buffer);
     }
@@ -79,7 +81,7 @@ Item {
 
             sourceComponent: {
                 if(root.enableLazyLoad && !root.isItemNearView(index)) {
-                    return placeholdComponent;
+                    return placeholderComponent;
                 }
                 return imageItemComponent;
             }
@@ -87,7 +89,7 @@ Item {
             // 当项目进入视图时加载真实内容
             onLoaded: {
                 if(item && item instanceof PicWindow) {
-                    item.imageUrl = model.url || model.imageUrl || "";
+                    item.imageSource = model.url || model.imageUrl || "";
                 }
             }
         }
@@ -106,8 +108,59 @@ Item {
         }
     }
     // 占位符组件
+    Component {
+        id: placeholderComponent
+        Rectangle {
+            width: gridView.cellWidth
+            height: gridView.cellHeight
+            color: "#f0f0f0"
+            radius: 4
+        }
+
+    }
+
     // 图片项目组件
+    Component{
+        id: imageItemComponent
+        PicWindow {
+            width: gridView.cellWidth
+            height: gridView.cellHeight
+            // thumbnailSize
+            imageSource: model.url || model.imageUrl || ""
+
+            // onImageClicked: {
+            //     PicGallery.itemClicked(index,imageUrl);
+            // }
+
+            // onImageLoaded: {
+            //     if(enableCache) {
+            //         // 缓存处理逻辑
+            //     }
+            // }
+        }
+    }
     // 滚动延迟处理定时器
+    Timer {
+        id: scrollTimer
+        interval: 150
+        onTriggered: picGallery.preloadImages()
+    }
     // 内存清理定时器
+    Timer {
+        interval: 10000 //十秒清理一次
+        running: enableLazyLoad
+        repeat: true
+        onTriggered: {
+            if(model && model.count > 100)
+            {
+                //清理原理视图的项目
+            }
+        }
+    }
     // 组件初始化
+    Component.onCompleted: {
+        if(model) {
+            console.log("PicGallery initialized with", model.count, "items");
+        }
+    }
 }
