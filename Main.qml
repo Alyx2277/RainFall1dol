@@ -4,8 +4,9 @@ import QtQuick.Controls.Material
 import "./Components"
 
 ApplicationWindow {
-    width: 640
-    height: 480
+    id:root
+    width: 900
+    height: 600
     visible: true
     title: qsTr("Hello World")
 
@@ -42,21 +43,23 @@ ApplicationWindow {
     }
 
     PicGallery {
-         id: gallery
-         anchors.fill: parent
-         model: imageModel
-         columns: 5
-         cellWidth: 200
-         cellHeight: 200
+        id: gallery
+        // anchors.fill: parent
+        width: root.width* 0.6
+        height: root.width* 0.6
+        model: imageModel
+        columns: 5
+        cellWidth: 300
+        cellHeight: 300
 
-         onItemClicked: function(index, url) {
-             console.log("Clicked item", index, "url:", url);
-             // 打开大图查看等操作
-         }
+        onItemClicked: function(index, url) {
+            console.log("Clicked item", index, "url:", url);
+            // 打开大图查看等操作
+        }
 
-         onLoadMoreRequested: {
-             console.log("Load more requested");
-             // 加载更多图片
-         }
-     }
+        onLoadMoreRequested: {
+            console.log("Load more requested");
+            // 加载更多图片
+        }
+    }
 }
