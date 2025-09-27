@@ -24,6 +24,7 @@ qt_add_qml_module(appRainfallEditTest
         RESOURCES imagesUrl.qrc
         QML_FILES utils/ImageCache.js
         QML_FILES Components/PicGallery.qml
+        QML_FILES Components/TimelineEditor.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

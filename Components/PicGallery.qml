@@ -79,7 +79,7 @@ Item {
 
             sourceComponent: {
                 if(root.enableLazyLoad && !root.isItemNearView(index)) {
-                    return placeholdComponent;
+                    return placeholderComponent;
                 }
                 return imageItemComponent;
             }
@@ -106,7 +106,17 @@ Item {
         }
     }
     // 占位符组件
+    Component {
+        id: placeholderComponent
+        Rectangle {
+            width: gridView.cellWidth
+            height: gridView.cellHeight
+            color: "#f0f0f0"
+            radius: 4
+        }
+    }
     // 图片项目组件
+
     // 滚动延迟处理定时器
     // 内存清理定时器
     // 组件初始化

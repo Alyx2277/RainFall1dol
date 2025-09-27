@@ -4,8 +4,8 @@ import QtQuick.Controls.Material
 import "./Components"
 
 ApplicationWindow {
-    width: 640
-    height: 480
+    width: 800
+    height: 680
     visible: true
     title: qsTr("Hello World")
 
@@ -35,5 +35,10 @@ ApplicationWindow {
         width: 400
         height: 400
         imageSource: "qrc:/action/images/image0.png"
+    }
+
+    TimelineEditor {
+        id: timeline
+
     }
 }
