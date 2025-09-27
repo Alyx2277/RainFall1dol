@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQml.Models
-import "utils" as Utils
+import "../utils" as Utils
 
 Item {
     id: root
@@ -15,6 +15,11 @@ Item {
     property bool enableCache: true
     property bool enableLazyLoad: true
 
+    property int maxWidth: 640 // 最大最小宽高
+    property int maxHeight: 480
+    property int minWidth: 400
+    property int minHeight: 200
+    // 信号
     signal itemClicked(int index,string imageUrl)
     signal loadMoreRequested()
     signal scollPositionChanged(real position)
@@ -22,18 +27,47 @@ Item {
     // 计算属性
     property real contentY: gridView.contentY
     property real contentHeight: gridView.contentHeight
-    property int visibleItemCount: gridView.visibleItemCount
+    // property int visibleItemCount: gridView.visibleItemCount
+
 
     // 内部函数 检查项目是否在可见区域附近
+    // 控制了加载多少图片
+    // function isItemNearView(index) {
+    //     if(!enableLazyLoad) return true;
+
+    //     var itemPos = index * cellHeight;
+    //     var buffer = preloadMargin * cellHeight;
+    //     return itemPos>=(gridView.contentY - buffer) &&
+    //             itemPos <= (gridView.contentY + gridView.height + buffer);
+    // }
     function isItemNearView(index) {
         if(!enableLazyLoad) return true;
 
-        var itemPos = index * cellHeight;
-        var buff = preloadMargin * cellHeight;
-        return itemPos>=(gridView.contentY - buffer) &&
-                itemPos <= (gridView.contentY + gridView.height + buffer);
-    }
+        // 计算网格布局参数
+        var columns = Math.floor(gridView.width / cellWidth);
+        var rows = Math.ceil(model.count / columns);
 
+        // 计算项目在网格中的位置
+        var row = Math.floor(index / columns);
+        var col = index % columns;
+
+        // 计算项目在内容中的像素位置
+        var itemX = col * cellWidth;
+        var itemY = row * cellHeight;
+
+        // 计算缓冲区（考虑X和Y方向）
+        var bufferX = preloadMargin * cellWidth;
+        var bufferY = preloadMargin * cellHeight;
+
+        // 检查项目是否在可见区域+缓冲区范围内
+        var inXRange = itemX >= (gridView.contentX - bufferX) &&
+                (itemX + cellWidth) <= (gridView.contentX + gridView.width + bufferX);
+
+        var inYRange = itemY >= (gridView.contentY - bufferY) &&
+                (itemY + cellHeight) <= (gridView.contentY + gridView.height + bufferY);
+
+        return inXRange && inYRange;
+    }
     // 内部函数 预加载图片
     function preloadImages() {
         if(!model || model.count === 0) return;
@@ -78,6 +112,7 @@ Item {
             asynchronous: true
 
             sourceComponent: {
+                console.log("index is : ",index);
                 if(root.enableLazyLoad && !root.isItemNearView(index)) {
                     return placeholderComponent;
                 }
@@ -87,13 +122,13 @@ Item {
             // 当项目进入视图时加载真实内容
             onLoaded: {
                 if(item && item instanceof PicWindow) {
-                    item.imageUrl = model.url || model.imageUrl || "";
+                    item.imageSource = model.url || model.imageUrl || "";
                 }
             }
         }
         // 滚动处理
         onContentYChanged: {
-            root.scrollPostionChanged(contentY / contentHeight);
+            root.scollPositionChanged(contentY / contentHeight);
             if (enableLazyLoad) {
                 scrollTimer.restart();
             }
@@ -115,9 +150,49 @@ Item {
             radius: 4
         }
     }
-    // 图片项目组件
 
+    // 图片项目组件
+    Component{
+        id: imageItemComponent
+        PicWindow {
+            width: gridView.cellWidth
+            height: gridView.cellHeight
+            // thumbnailSize
+            imageSource: model.url || model.imageUrl || ""
+
+            // onImageClicked: {
+            //     PicGallery.itemClicked(index,imageUrl);
+            // }
+
+            // onImageLoaded: {
+            //     if(enableCache) {
+            //         // 缓存处理逻辑
+            //     }
+            // }
+        }
+    }
     // 滚动延迟处理定时器
+    Timer {
+        id: scrollTimer
+        interval: 150
+        onTriggered: root.preloadImages()
+    }
     // 内存清理定时器
+    Timer {
+        interval: 10000 //十秒清理一次
+        running: enableLazyLoad
+        repeat: true
+        onTriggered: {
+            if(model && model.count > 100)
+            {
+                //清理原理视图的项目
+            }
+        }
+    }
     // 组件初始化
+    Component.onCompleted: {
+        if(model) {
+            console.log("PicGallery initialized with", model.count, "items");
+        }
+    }
 }

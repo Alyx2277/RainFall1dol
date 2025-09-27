@@ -4,8 +4,9 @@ import QtQuick.Controls.Material
 import "./Components"
 
 ApplicationWindow {
-    width: 800
-    height: 680
+    id:root
+    width: 900
+    height: 600
     visible: true
     title: qsTr("Hello World")
 
@@ -31,10 +32,35 @@ ApplicationWindow {
         }
     }
 
-    PicWindow {
-        width: 400
-        height: 400
-        imageSource: "qrc:/action/images/image0.png"
+    ListModel {
+        id: imageModel
+        Component.onCompleted: {
+            for (var i = 0; i < 108; i++) {
+                // 根据您的实际文件命名规则调整路径
+                append({"url": "qrc:/action/images/image" + i + ".png"});
+            }
+        }
+    }
+
+    PicGallery {
+        id: gallery
+        // anchors.fill: parent
+        width: root.width* 0.6
+        height: root.width* 0.6
+        model: imageModel
+        columns: 5
+        cellWidth: 300
+        cellHeight: 300
+
+        onItemClicked: function(index, url) {
+            console.log("Clicked item", index, "url:", url);
+            // 打开大图查看等操作
+        }
+
+        onLoadMoreRequested: {
+            console.log("Load more requested");
+            // 加载更多图片
+        }
     }
 
     TimelineEditor {
