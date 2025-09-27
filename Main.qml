@@ -46,7 +46,7 @@ ApplicationWindow {
         id: gallery
         // anchors.fill: parent
         width: root.width* 0.6
-        height: root.width* 0.6
+        height: root.height* 0.6
         model: imageModel
         columns: 5
         cellWidth: 300
@@ -66,5 +66,9 @@ ApplicationWindow {
     TimelineEditor {
         id: timeline
 
+        anchors {
+            bottom: parent.bottom
+            bottomMargin: 0
+        }
     }
 }
