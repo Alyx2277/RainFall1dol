@@ -112,8 +112,8 @@ Item {
             asynchronous: true
 
             // 加载图片
+            //这里逻辑写的不好，还要修改 2025.9.28
             sourceComponent: {
-                //这里逻辑写的不好，还要修改 2025.9.28
                 if(root.enableLazyLoad && !root.isItemNearView(index)) {
                     console.log("not near ,get index is",index);
                     return placeholderComponent;
@@ -125,7 +125,8 @@ Item {
             // 当项目进入视图时加载真实内容
             onLoaded: {
                 if(item && item instanceof PicWindow) {
-                    item.imageSource = model.url || model.imageUrl || "";
+                    console.log("onLoaded model.url: ",model.url);
+                    item.imageSource = model.url || "";
                 }
             }
         }
@@ -181,17 +182,19 @@ Item {
         onTriggered: root.preloadImages()
     }
     // 内存清理定时器
-    Timer {
-        interval: 10000 //十秒清理一次
-        running: enableLazyLoad
-        repeat: true
-        onTriggered: {
-            if(model && model.count > 100)
-            {
-                //清理原理视图的项目
-            }
-        }
-    }
+    // 目前看不出内存清理重要性，好像内存占用还好
+    // Timer {
+    //     interval: 10000 //十秒清理一次
+    //     running: enableLazyLoad
+    //     repeat: true
+    //     onTriggered: {
+    //         if(model && model.count > 100)
+    //         {
+    //             console.log("enter timer clean");
+    //             //清理原理视图的项目
+    //         }
+    //     }
+    // }
     // 组件初始化
     Component.onCompleted: {
         if(model) {
