@@ -45,8 +45,8 @@ ApplicationWindow {
     PicGallery {
         id: gallery
         // anchors.fill: parent
-        width: root.width* 0.6
-        height: root.height* 0.6
+        width: root.width* 0.7 // 540
+        height: root.height* 0.6 // 360
         model: imageModel
         columns: 5
         cellWidth: 300

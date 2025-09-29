@@ -111,11 +111,14 @@ Item {
             height: gridView.cellHeight
             asynchronous: true
 
+            // 加载图片
             sourceComponent: {
-                console.log("index is : ",index);
+                //这里逻辑写的不好，还要修改 2025.9.28
                 if(root.enableLazyLoad && !root.isItemNearView(index)) {
+                    console.log("not near ,get index is",index);
                     return placeholderComponent;
                 }
+                console.log("near ,get index is",index);
                 return imageItemComponent;
             }
 
