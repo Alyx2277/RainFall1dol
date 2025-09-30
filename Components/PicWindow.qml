@@ -64,11 +64,29 @@ Item{
         radius: root.borderRadius
     }
 
+
     // 点击区域
     MouseArea {
         anchors.fill: parent
         onClicked: root.imageClicked()
         cursorShape: Qt.PointingHandCursor
+        drag.target: parent
+        Drag.supportedActions: Qt.CopyAction
     }
+
+    // 用来承载拖拽能力的组件，不用可见
+    // Item {
+    //     id: dragItem
+    //     anchors.fill: parent
+
+    //     Drag.active: mouseArea.drag.active
+    //     Drag.hotSpot.x: width / 2
+    //     Drag.hotSpot.y: height / 2
+    //     Drag.mimeData: {
+    //         "component/type": root.componentType // 传递组件类型
+    //     }
+    //     Drag.supportedActions: Qt.CopyAction
+    //     Drag.dragType: Drag.Automatic
+    // }
 }
 

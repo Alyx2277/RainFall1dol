@@ -82,15 +82,15 @@ Item {
             }
         }
     }
-    // 清除缓存
+    // 清除缓存（废弃）
     function clearCache() {
         Utils.ImageCache.clearCache();
     }
-    // 滑动到指定位置
+    // 滑动到指定位置（废弃）
     function scrollTo(position) {
         gridView.contentY = position;
     }
-    // 滚动到指定索引
+    // 滚动到指定索引（废弃）
     function scrollToIndex(index) {
         gridView.positionViewAtIndex(index, GridView.Visible);
     }
@@ -130,6 +130,7 @@ Item {
                 }
             }
         }
+
         // 滚动处理
         onContentYChanged: {
             root.scollPositionChanged(contentY / contentHeight);
