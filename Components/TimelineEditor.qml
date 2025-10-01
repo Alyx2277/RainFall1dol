@@ -5,7 +5,7 @@ Item {
     id: root
 
     width:parent.width
-    height: 200
+    height: 230
 
     // 标题
     Rectangle {
@@ -44,7 +44,8 @@ Item {
 
             // 按钮点击事件
             onClicked: {
-                console.log("开始播放")
+                console.log("开始播放");
+                createActionPoints();
                 // 在这里添加开始播放的逻辑
             }
         }
@@ -105,7 +106,7 @@ Item {
             Flickable {
                 id: flickableScrollView
                 contentWidth: item1.width+200
-                contentHeight: item1.height+100
+                contentHeight: item1.height
             }
 
             Item {
@@ -121,27 +122,27 @@ Item {
                     height: 30
                     color: "#8a8a8a"
 
-                    Rectangle {
-                        id: recFrame1
-                        x: 279
-                        y: 1
-                        width: 200
-                        height: 28
-                        color: "#404040"
-                        border.color: "#ffffff"
-                        border.width: 2
-                    }
+                    // Rectangle {
+                    //     id: recFrame1
+                    //     x: 279
+                    //     y: 1
+                    //     width: 200
+                    //     height: 28
+                    //     color: "#404040"
+                    //     border.color: "#ffffff"
+                    //     border.width: 2
+                    // }
 
-                    Rectangle {
-                        id: recFrame2
-                        x: 558
-                        y: 1
-                        width: 344
-                        height: 28
-                        color: "#404040"
-                        border.color: "#ffffff"
-                        border.width: 2
-                    }
+                    // Rectangle {
+                    //     id: recFrame2
+                    //     x: 558
+                    //     y: 1
+                    //     width: 344
+                    //     height: 28
+                    //     color: "#404040"
+                    //     border.color: "#ffffff"
+                    //     border.width: 2
+                    // }
                 }
 
                 Rectangle {
@@ -161,37 +162,25 @@ Item {
                     height: 30
                     color: "#8a8a8a"
                 }
+            }
+            // 真正加载时间轴上动作时间块
+            Repeater {
+                model: actionPointsModel
 
                 Rectangle {
-                    id: recAni4
-                    x: 0
-                    y: 90
-                    width: parent.width
+                    width: 80
                     height: 30
-                    color: "#c9c9c9"
-                }
-
-                Rectangle {
-                    id: recAni5
-                    x: 0
-                    y: 120
-                    width: parent.width
-                    height: 30
-                    color: "#8a8a8a"
-                }
-
-                Rectangle {
-                    id: recAni6
-                    x: 0
-                    y: 150
-                    width: parent.width
-                    height: 30
-                    color: "#c9c9c9"
+                    color: "#404040"
+                    radius: 5
+                    border.color: "#c9c9c9"
+                    x: model.x
+                    y: model.y
+                    visible: model.visible
                 }
             }
         }
 
-        //
+        // 左边时间轴
         ScrollView {
             id: scrollView1
             x: 0
@@ -218,6 +207,11 @@ Item {
                 width: 200
                 height: 30
                 color: "#404040"
+                Text {
+                    color: "white"
+                    anchors.centerIn: parent
+                    text: qsTr("人物动作轴")
+                }
             }
 
             Rectangle {
@@ -227,7 +221,13 @@ Item {
                 width: 200
                 height: 30
                 color: "#616161"
+                Text {
+                    color: "white"
+                    anchors.centerIn: parent
+                    text: qsTr("音乐轴")
+                }
             }
+
 
             Rectangle {
                 id: rectangle3
@@ -236,33 +236,11 @@ Item {
                 width: 200
                 height: 30
                 color: "#404040"
-            }
-
-            Rectangle {
-                id: rectangle4
-                x: 0
-                y: 90
-                width: 200
-                height: 30
-                color: "#616161"
-            }
-
-            Rectangle {
-                id: rectangle5
-                x: 0
-                y: 120
-                width: 200
-                height: 30
-                color: "#404040"
-            }
-
-            Rectangle {
-                id: rectangle6
-                x: 0
-                y: 150
-                width: 200
-                height: 30
-                color: "#616161"
+                Text {
+                    color: "white"
+                    anchors.centerIn: parent
+                    text: qsTr("场景动作轴")
+                }
             }
         }
 
@@ -329,4 +307,13 @@ Item {
             border.width: 1
         }
     }
+    function createActionPoints() {
+        // 添加关键点数据到模型
+        actionPointsModel.append({x: recTimeruler.x-5, y: 0, visible: true});
+        // 可以根据需要添加更多关键点
+    }
+    ListModel {
+        id: actionPointsModel
+    }
 }
+

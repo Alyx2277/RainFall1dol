@@ -66,27 +66,56 @@ Item{
 
 
     // 点击区域
+    // 暂时不启用拖拽功能
     MouseArea {
         anchors.fill: parent
-        onClicked: root.imageClicked()
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
         cursorShape: Qt.PointingHandCursor
-        drag.target: parent
-        Drag.supportedActions: Qt.CopyAction
+        // drag.target: parent
+        // Drag.supportedActions: Qt.CopyAction
+
+        // 编写右键打开菜单和双击直接加入时间轴功能
+        onDoubleClicked: function(mouse){
+            if (mouse.button === Qt.LeftButton)
+            {
+                // addActionToTimeline();
+                console.log("hello man!");
+            }
+
+        }
+
+        // 右键菜单定义
+        onClicked: function(mouse){
+            if (mouse.button === Qt.RightButton) {
+                console.log("hello kobe!");
+                contextMenu.popup()
+            }
+        }
+        Menu {
+            id: contextMenu
+            MenuItem {
+                text: "预览"
+                onTriggered: console.log("addPicToPreview()")
+            }
+            MenuItem {
+                text: "添加"
+                onTriggered: console.log("addActionToTimeline()")
+            }
+        }
+
+        // 用来承载拖拽能力的组件，不用可见
+        // Item {
+        //     id: dragItem
+        //     anchors.fill: parent
+
+        //     Drag.active: mouseArea.drag.active
+        //     Drag.hotSpot.x: width / 2
+        //     Drag.hotSpot.y: height / 2
+        //     Drag.mimeData: {
+        //         "component/type": root.componentType // 传递组件类型
+        //     }
+        //     Drag.supportedActions: Qt.CopyAction
+        //     Drag.dragType: Drag.Automatic
+        // }
     }
-
-    // 用来承载拖拽能力的组件，不用可见
-    // Item {
-    //     id: dragItem
-    //     anchors.fill: parent
-
-    //     Drag.active: mouseArea.drag.active
-    //     Drag.hotSpot.x: width / 2
-    //     Drag.hotSpot.y: height / 2
-    //     Drag.mimeData: {
-    //         "component/type": root.componentType // 传递组件类型
-    //     }
-    //     Drag.supportedActions: Qt.CopyAction
-    //     Drag.dragType: Drag.Automatic
-    // }
 }
-
