@@ -4,6 +4,7 @@ import QtQuick.Controls
 Item {
     id: root
 
+    property int previousWidth: 0
     width:parent.width
     height: 230
 
@@ -121,28 +122,6 @@ Item {
                     width: 3000
                     height: 30
                     color: "#8a8a8a"
-
-                    // Rectangle {
-                    //     id: recFrame1
-                    //     x: 279
-                    //     y: 1
-                    //     width: 200
-                    //     height: 28
-                    //     color: "#404040"
-                    //     border.color: "#ffffff"
-                    //     border.width: 2
-                    // }
-
-                    // Rectangle {
-                    //     id: recFrame2
-                    //     x: 558
-                    //     y: 1
-                    //     width: 344
-                    //     height: 28
-                    //     color: "#404040"
-                    //     border.color: "#ffffff"
-                    //     border.width: 2
-                    // }
                 }
 
                 Rectangle {
@@ -168,11 +147,12 @@ Item {
                 model: actionPointsModel
 
                 Rectangle {
-                    width: 80
+                    width: model.width
                     height: 30
                     color: "#404040"
                     radius: 5
                     border.color: "#c9c9c9"
+                    // border.width: 1
                     x: model.x
                     y: model.y
                     visible: model.visible
@@ -260,30 +240,7 @@ Item {
                 contentHeight: 0
                 interactive: false // 禁用鼠标滑动
                 contentX: flickableScrollView.contentX
-
-                //                onContentYChanged: {
-                //                    // 当 ScrollView 2 滚动时，同步 ScrollView 1 的滚动位置
-                //                    flickableScrollView.contentY = contentY;
-                //                }
-
             }
-
-            // Rectangle {
-            //     id: recTimeruler
-            //     x: 0
-            //     y: 0
-            //     width: parent.width
-            //     height: 40
-            //     color: "#aeaeae"
-
-            //     Text {
-            //         id: text1
-            //         x: 605
-            //         y: 8
-            //         text: qsTr("100")
-            //         font.pixelSize: 20
-            //     }
-            // }
             TimelineRuler {
                 id: recTimeruler
 
@@ -308,12 +265,31 @@ Item {
         }
     }
     function createActionPoints() {
-        // 添加关键点数据到模型
-        actionPointsModel.append({x: recTimeruler.x-5, y: 0, visible: true});
-        // 可以根据需要添加更多关键点
+        // 添加新的时间块数据
+        var newX = root.previousWidth;
+        actionPointsModel.append({x: newX+1, y: 0, visible: true, time:80 ,width: time-3});
+
+        // 计算并更新最远的x轴位置
+        var maxX = 0;
+        // 遍历所有时间块找到最大的x值
+        for (var i = 0; i < actionPointsModel.count; i++) {
+            var currentItem = actionPointsModel.get(i);
+            // 考虑时间块自身宽度，计算其右边缘位置
+            var rightEdge = currentItem.x + 79; // 80是时间块的宽度
+            if (rightEdge > maxX) {
+                maxX = rightEdge;
+            }
+        }
+
+        // 更新previousWidth为最远的位置
+        root.previousWidth = maxX;
+        console.log("最远时间块位置已更新为: " + root.previousWidth);
     }
+    property int time: 80
     ListModel {
         id: actionPointsModel
+
+
     }
 }
 
