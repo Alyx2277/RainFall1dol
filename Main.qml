@@ -45,6 +45,8 @@ ApplicationWindow {
     PicGallery {
         id: gallery
         // anchors.fill: parent
+        x:0
+        y:0
         width: root.width* 0.7 // 540
         height: root.height* 0.6 // 360
         model: imageModel
@@ -61,7 +63,6 @@ ApplicationWindow {
             console.log("Load more requested");
             // 加载更多图片
         }
-
     }
 
     TimelineEditor {

@@ -26,6 +26,8 @@ qt_add_qml_module(appRainfallEditTest
         QML_FILES Components/PicGallery.qml
         QML_FILES Components/TimelineEditor.qml
         QML_FILES Components/TimelineRuler.qml
+        QML_FILES Components/DragRectangle.qml
+        QML_FILES utils/TimeRecFunc.js
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

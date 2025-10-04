@@ -122,6 +122,22 @@ Item {
                     width: 3000
                     height: 30
                     color: "#8a8a8a"
+                    // 真正加载时间轴上动作时间块
+                    Repeater {
+                        model: actionPointsModel
+
+                        DragRectangle {
+                            width: model.width
+                            height: 30
+                            color: "#404040"
+                            radius: 5
+                            border.color: "#c9c9c9"
+                            // border.width: 1
+                            x: model.x
+                            y: model.y
+                            visible: model.visible
+                        }
+                    }
                 }
 
                 Rectangle {
@@ -140,22 +156,6 @@ Item {
                     width: parent.width
                     height: 30
                     color: "#8a8a8a"
-                }
-            }
-            // 真正加载时间轴上动作时间块
-            Repeater {
-                model: actionPointsModel
-
-                Rectangle {
-                    width: model.width
-                    height: 30
-                    color: "#404040"
-                    radius: 5
-                    border.color: "#c9c9c9"
-                    // border.width: 1
-                    x: model.x
-                    y: model.y
-                    visible: model.visible
                 }
             }
         }
@@ -290,6 +290,14 @@ Item {
         id: actionPointsModel
 
 
+    }
+
+    function makeViewCenter(view)
+    {
+        var cx = (width-view.width)*0.5
+        var cy = (height-view.height)*0.5
+        view.x = cx
+        view.y = cy
     }
 }
 
