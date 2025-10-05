@@ -124,6 +124,7 @@ Item {
                     color: "#8a8a8a"
                     // 真正加载时间轴上动作时间块
                     Repeater {
+                        id: rectRepeater
                         model: actionPointsModel
 
                         DragRectangle {
@@ -136,6 +137,18 @@ Item {
                             x: model.x
                             y: model.y
                             visible: model.visible
+
+                            onWidthChanged: updateSubsequentItems();
+
+                            function updateSubsequentItems() {
+                                for(let i = index+1;i<rectRepeater.count;i++) {
+                                    let prevItem = rectRepeater.itemAt(i-1);
+                                    let currItem = rectRepeater.itemAt(i);
+                                    currItem.x = prevItem.x + prevItem.width+3;
+
+                                    actionPointsModel.setProperty(i, "x", currItem.x);
+                                }
+                            }
                         }
                     }
                 }
@@ -292,12 +305,8 @@ Item {
 
     }
 
-    function makeViewCenter(view)
-    {
-        var cx = (width-view.width)*0.5
-        var cy = (height-view.height)*0.5
-        view.x = cx
-        view.y = cy
+    function relocation_After_All_TimeRecX() {
+
     }
 }
 

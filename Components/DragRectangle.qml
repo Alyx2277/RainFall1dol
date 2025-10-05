@@ -1,5 +1,4 @@
 import QtQuick
-import "../utils/TimeRecFunc.js" as TimeRecFunc
 
 Rectangle {
     id:timeRec
@@ -12,6 +11,7 @@ Rectangle {
     readonly property int minHeight: 30
     property bool isDragging: false
 
+    signal dragTimeRecFinish()
     MouseArea {
 
         id: mouseArea
@@ -45,8 +45,11 @@ Rectangle {
                 // 恢复Flickable的滑动
                 flickableScrollView.interactive = true;
                 release();
-                // TODO：这里还要做处理后面的时间块位置的工作
+
+                // [完成]TODO：这里还要做处理后面的时间块位置的工作
                 // 可能可以用发出信号？or what ever
+                relocationWidth();
+                dragTimeRecFinish()
             }
             onMouseXChanged: positionChange(Qt.point(mouseX, customPoint.y), 1, 1)
         }
@@ -95,5 +98,14 @@ Rectangle {
         // 使用父容器作为边界参考，而非跨组件引用dragBackground
         var parentRect = parent;
         x = Math.max(0, Math.min(parentRect.width - width, x));
+    }
+
+    function relocationWidth(){
+        var i = timeRec.width%40;
+        if(i>20) {
+            timeRec.width+=(37-i);
+        } else {
+            timeRec.width-=(i+3);
+        }
     }
 }
