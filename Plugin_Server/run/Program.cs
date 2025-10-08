@@ -72,6 +72,7 @@ namespace VTSBatchHotkeySender
                 // 执行热键任务
                 await ExecuteHotkeyTasks(plugin, logger, hotkeyTasks);
                 logger.Log("所有热键任务已执行完成");
+
             }
             catch (VTSException ex)
             {
@@ -85,6 +86,7 @@ namespace VTSBatchHotkeySender
             // 保持程序运行
             var host = builder.Build();
             await host.RunAsync();
+            Console.ReadKey();
         }
 
         /// <summary>

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("run")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2418ce790d26992f99a851f441ba0e82fedc8c6b")]
 [assembly: System.Reflection.AssemblyProductAttribute("run")]
 [assembly: System.Reflection.AssemblyTitleAttribute("run")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
