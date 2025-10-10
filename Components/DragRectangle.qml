@@ -7,11 +7,17 @@ Rectangle {
     property point customPoint
     color: "#00debff3"
     border.color: "#d37e49"
+    property string profileText: "init"
     readonly property int minWidth: 80
     readonly property int minHeight: 30
     property bool isDragging: false
 
     signal dragTimeRecFinish()
+    Text{
+        text: profileText
+        color: "#D9E4E7"
+        anchors.centerIn: parent
+    }
     MouseArea {
 
         id: mouseArea

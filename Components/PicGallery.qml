@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Controls
-import QtQml.Models
 import "../utils" as Utils
 
 Item {
@@ -14,6 +13,7 @@ Item {
     property int preloadMargin: 3 // 预加载前后几行的图片
     property bool enableCache: true
     property bool enableLazyLoad: true
+    property bool leftOrRight: false // false是左，true是右
 
     property int maxWidth: 640 // 最大最小宽高
     property int maxHeight: 480
@@ -95,6 +95,19 @@ Item {
         gridView.positionViewAtIndex(index, GridView.Visible);
     }
 
+    Switch {
+        id: leftorright
+        text: "当前是左手动作"
+        x:0
+        y:0
+        z:10
+        checked: false
+        onCheckedChanged: {
+            leftOrRight = leftorright.checked ? true : false ;
+            leftorright.text = leftorright.checked ? "当前是右手动作" : "当前是左手动作" ;
+            console.log("leftOrRight的值为：", leftOrRight);
+        }
+    }
     // Grid布局
     GridView {
         id: gridView

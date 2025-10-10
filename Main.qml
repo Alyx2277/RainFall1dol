@@ -63,6 +63,10 @@ ApplicationWindow {
             console.log("Load more requested");
             // 加载更多图片
         }
+        onLeftOrRightChanged: {
+            timeline.lOr = !timeline.lOr
+            console.log("lOr is : ",timeline.lOr);
+        }
     }
 
     TimelineEditor {

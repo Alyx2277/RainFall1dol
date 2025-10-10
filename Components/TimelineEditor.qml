@@ -5,6 +5,7 @@ Item {
     id: root
 
     property int previousWidth: 0
+    property bool lOr: false // false 是左手， true是右手
     width:parent.width
     height: 230
 
@@ -137,6 +138,8 @@ Item {
                             x: model.x
                             y: model.y
                             visible: model.visible
+                            profileText: "nowHand: "+ lOr
+
 
                             onWidthChanged: updateSubsequentItems();
 
@@ -280,7 +283,7 @@ Item {
     function createActionPoints() {
         // 添加新的时间块数据
         var newX = root.previousWidth;
-        actionPointsModel.append({x: newX+1, y: 0, visible: true, time:80 ,width: time-3});
+        actionPointsModel.append({x: newX+1, y: 0, visible: true, time:80 ,width: time-3,lOr: root.lOr});
 
         // 计算并更新最远的x轴位置
         var maxX = 0;
