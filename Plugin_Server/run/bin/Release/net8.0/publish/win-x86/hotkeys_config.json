@@ -1,0 +1,17 @@
+[
+  {
+    "hotkeyId": "anim_wave",
+    "delaySeconds": 1.0,
+    "description": "挥手动画"
+  },
+  {
+    "hotkeyId": "expr_smile",
+    "delaySeconds": 2.0,
+    "description": "微笑表情"
+  },
+  {
+    "hotkeyId": "move_left",
+    "delaySeconds": 1.5,
+    "description": "向左移动"
+  }
+]
