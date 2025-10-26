@@ -25,6 +25,14 @@ Rectangle {
         // drag.target: parent
     }
 
+    Connections {
+        target: timeRec
+        //和TimelineEditor.qml已经连接成功，把最新的width传过去，Editor同步最新的时间块位置
+        function onDragTimeRecFinish() {
+            relocation_After_All_TimeRecX();
+        }
+    }
+
     Item
     {
         id: right

@@ -141,17 +141,22 @@ Item {
                             profileText: "nowHand: "+ lOr
 
 
-                            onWidthChanged: updateSubsequentItems();
+                            // 没生效
+                            // onWidthChanged: updateSubsequentItems();
 
-                            function updateSubsequentItems() {
-                                for(let i = index+1;i<rectRepeater.count;i++) {
-                                    let prevItem = rectRepeater.itemAt(i-1);
-                                    let currItem = rectRepeater.itemAt(i);
-                                    currItem.x = prevItem.x + prevItem.width+3;
+                            // function updateSubsequentItems() {
+                            //     for(let i = index+1;i<rectRepeater.count;i++) {
+                            //         let prevItem = rectRepeater.itemAt(i-1);
+                            //         let currItem = rectRepeater.itemAt(i);
+                            //         currItem.x = prevItem.x + prevItem.width+3;
 
-                                    actionPointsModel.setProperty(i, "x", currItem.x);
-                                }
-                            }
+                            //         // 结束拖动的时候，最新时间块位置更新
+                            //         root.previousWidth = currItem.x;
+                            //         console.log("当我拖动完毕，root.previousWidth: ",root.previousWidth);
+
+                            //         actionPointsModel.setProperty(i, "x", currItem.x);
+                            //     }
+                            // }
                         }
                     }
                 }
@@ -309,7 +314,7 @@ Item {
     }
 
     function relocation_After_All_TimeRecX() {
-
+        console.log("oh yeah connect success");
     }
 }
 
