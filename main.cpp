@@ -1,6 +1,9 @@
 #include "AutoHead.h"
 #include "imageShow.h"
 #include "macroQueue.h"
+#include <windows.h>
+#include <string>
+#include <iostream>
 
 // Data
 static ID3D11Device* g_pd3dDevice = nullptr;
@@ -15,6 +18,7 @@ bool CreateDeviceD3D(HWND hWnd);
 void CleanupDeviceD3D();
 void CreateRenderTarget();
 void CleanupRenderTarget();
+//void StartSharpServer();
 LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 int main()
@@ -93,6 +97,9 @@ int main()
     bool show_demo_window = true;
     bool show_another_window = false;
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
+    // 拉起c#后端程序
+    //StartSharpServer();
 
     // Main loop
     bool done = false;
@@ -270,4 +277,42 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
         break;
     }
     return ::DefWindowProcW(hWnd, msg, wParam, lParam);
+}
+
+//拉起后端程序
+void StartSharpServer() {
+    std::wstring runExePath = L"Plguin_Server\\publish\\run.exe";
+    wchar_t cmdLine[MAX_PATH];
+    wcscpy_s(cmdLine, MAX_PATH ,runExePath.c_str());
+    // 准备启动信息
+    PROCESS_INFORMATION pi;
+
+    STARTUPINFO StartInfo;
+    memset(&StartInfo, 0, sizeof(STARTUPINFO));
+    StartInfo.cb = sizeof(STARTUPINFO);
+    //ZeroMemory(&pi, sizeof(pi));
+    //std::cout << "cmdLine is :" << cmdLine << std::endl;
+    if (CreateProcess(
+        L"Plugin_Server\\publish\\run.exe",
+        NULL,
+        NULL,
+        NULL,
+        FALSE,
+        NORMAL_PRIORITY_CLASS,
+        NULL,
+        NULL,
+        &StartInfo,
+        &pi)
+        ) 
+    {
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    }
+    else
+    {
+        // 处理错误
+        DWORD error = GetLastError();
+        // 可以添加错误处理代码
+        printf("create CSharp server failed");
+    }
 }

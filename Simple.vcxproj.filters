@@ -57,6 +57,9 @@
     <ClInclude Include="keyboardSimulate.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="json.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="imgui_impl_dx11.cpp">
